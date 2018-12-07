@@ -60,6 +60,22 @@ loop	LDI R0, BUFFER
 	BRn checku
 	BRp checkA
 
+checku	AND R4, R4, #0
+	LD R2, U
+	ADD R3, R0, R2
+	BRnp loop
+	ADD R4, R4, #1
+	BRnzp loop
+checka	LD R2, A
+	ADD R3, R0, R2
+	BRnp checkg
+	ADD R4, R4, #2
+	BRnzp loop
+checkg	LD R2, G
+	ADD R3, R0, R2
+	BRnp loop
+	ADD R4, R4, #2
+	BRnzp loop
 
 ZERO	.FILL	0
 BUFFER	.FILL	X4600
