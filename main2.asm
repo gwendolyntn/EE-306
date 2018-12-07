@@ -46,7 +46,19 @@ CHECKG	LD R2, G
 	BRnp LOOP
 	LD R0, PIPE
 	TRAP X21
-	BRnzp next	
+	BRnzp next
+	
+;Check for stop codon
+next	AND R4, R4, #0
+loop	LDI R0, BUFFER
+	BRz loop
+	TRAP X21
+	AND R1, R1, #0
+	STI R1, BUFFER
+	ADD R4, R4, #-1
+	BRz checka
+	BRn checku
+	BRp checkA
 
 
 ZERO	.FILL	0
