@@ -77,6 +77,18 @@ checkg	LD R2, G
 	ADD R4, R4, #2
 	BRnzp loop
 
+checkA	LD R2, A
+	ADD R3, R0, R2
+	BRnp checkG
+	AND R4, R4, #0
+	TRAP X25
+checkG	LD R2, G
+	ADD R3, R0, R2
+	BRnp loop
+	AND R4, R4, #0
+	TRAP X25
+
+
 ZERO	.FILL	0
 BUFFER	.FILL	X4600
 INT	.FILL	X2600
